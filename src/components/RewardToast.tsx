@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
+import Image from "next/image";
 import { demoRewardEvents, type RewardEvent } from "@/lib/data";
 import { DemoBadge } from "./ui/DemoBadge";
 
@@ -10,12 +11,13 @@ function RewardCard({ event }: { event: RewardEvent }) {
     <div className="relative w-full max-w-sm overflow-hidden rounded-2xl border border-gold-500/25 bg-ink-elevated/95 p-4 shadow-[0_20px_60px_-20px_rgba(0,0,0,0.7)] backdrop-blur">
       <div className="flex items-start justify-between gap-3">
         <div className="flex items-center gap-2.5">
-          <span
-            aria-hidden
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-gold-500/15 font-serif text-sm text-gold-300"
-          >
-            G
-          </span>
+          <Image
+            src="/goldr-token-icon.png"
+            alt="GOLDR"
+            width={36}
+            height={36}
+            className="h-9 w-9 shrink-0 rounded-full"
+          />
           <div>
             <p className="text-xs font-semibold uppercase tracking-wider text-warm-white/70">
               GOLDR
