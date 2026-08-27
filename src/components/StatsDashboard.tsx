@@ -24,6 +24,25 @@ const cards = [
   },
 ];
 
+/**
+ * Pre-launch stat placeholder: an animated "loading" bar instead of a
+ * numeric value. This is intentional — we don't have real data yet, and we
+ * don't fabricate any (see product principle in README / lib/data.ts).
+ * Showing "awaiting launch" reads as a live product waiting on real data,
+ * without ever claiming a number that isn't true.
+ */
+function PendingStat() {
+  return (
+    <div className="mt-3">
+      <div className="h-8 w-28 animate-shimmer rounded-md bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_25%,rgba(212,175,55,0.16)_50%,rgba(255,255,255,0.04)_75%)] bg-[length:200%_100%]" />
+      <p className="mt-2 flex items-center gap-1.5 text-[10px] font-semibold uppercase tracking-wider text-gold-500/70">
+        <span className="h-1 w-1 rounded-full bg-gold-500/70 animate-pulse" />
+        Awaiting launch
+      </p>
+    </div>
+  );
+}
+
 export function StatsDashboard() {
   return (
     <section id="treasury" className="mx-auto max-w-6xl px-5 pb-6 sm:px-8">
@@ -45,17 +64,20 @@ export function StatsDashboard() {
             <p className="text-xs font-medium uppercase tracking-wider text-warm-white/50">
               {card.label}
             </p>
-            <p className="mt-3 font-mono text-3xl text-gold-300">
-              {card.value}
-            </p>
+            {LIVE_DATA_ENABLED ? (
+              <p className="mt-3 font-mono text-3xl text-gold-300">
+                {card.value}
+              </p>
+            ) : (
+              <PendingStat />
+            )}
           </div>
         ))}
       </div>
       <p className="mt-4 text-xs text-warm-white/40">
-        These figures reflect the current build and are intentionally zero —
-        they will switch to live, independently verifiable onchain data once
-        {" "}
-        {"$GOLDR"} launches and the treasury mechanism goes live.
+        This dashboard goes live with real, independently verifiable onchain
+        data the moment {"$GOLDR"} launches and the treasury mechanism is
+        active — nothing here is invented in the meantime.
       </p>
     </section>
   );
