@@ -45,7 +45,10 @@ function PendingStat() {
 
 export function StatsDashboard() {
   return (
-    <section id="treasury" className="mx-auto max-w-6xl px-5 pb-6 sm:px-8">
+    <section
+      id="treasury"
+      className="mx-auto max-w-6xl px-5 pb-6 pt-16 sm:px-8 sm:pt-20"
+    >
       <div className="mb-6 flex flex-wrap items-center justify-between gap-3">
         <h2 className="font-serif text-2xl text-warm-white">
           Live Dashboard
